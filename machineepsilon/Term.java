@@ -1,6 +1,6 @@
 package machineepsilon;
 
-public class Term
+public class Term implements Comparable<Term>
 {
     Fraction coefficient;
     int exponent;
@@ -14,6 +14,23 @@ public class Term
     public Term(int coefficient, int exponent)
     {
         Term(new Fraction(coefficient), exponent);
+    }
+
+    public int compareTo(Term term)
+    {
+        int exponentCompare = this.exponent - term.getExponent();
+        if (exponentCompare > 0)
+            return 1;
+        else if (exponentCompare < 0)
+            return -1;
+
+        int coefficientCompare = this.coefficient.compareTo(term.getCoefficient());
+        if (coefficientCompare > 0)
+            return 1;
+        else if (coefficientCompare < 0)
+            return -1;
+
+        return 0;
     }
 
     public static Term add(Term t1, Term t2)
