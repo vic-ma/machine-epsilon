@@ -16,6 +16,16 @@ public class Term implements Comparable<Term>
         Term(new Fraction(coefficient), exponent);
     }
 
+    public Fraction getCoefficient()
+    {
+        return coefficient;
+    }
+
+    public int getExponent()
+    {
+        return exponent;
+    }
+
     public int compareTo(Term term)
     {
         int exponentCompare = this.exponent - term.getExponent();
@@ -31,16 +41,6 @@ public class Term implements Comparable<Term>
             return -1;
 
         return 0;
-    }
-
-    public Fraction getCoefficient()
-    {
-        return coefficient;
-    }
-
-    public int getExponent()
-    {
-        return exponent;
     }
 
     public static Term add(Term t1, Term t2)
