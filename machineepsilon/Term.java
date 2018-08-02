@@ -2,8 +2,8 @@ package machineepsilon;
 
 public class Term implements Comparable<Term>
 {
-    Fraction coefficient;
-    int exponent;
+    private Fraction coefficient;
+    private int exponent;
 
     public Term(Fraction coefficient, int exponent)
     {
@@ -33,6 +33,16 @@ public class Term implements Comparable<Term>
         return 0;
     }
 
+    public Fraction getCoefficient()
+    {
+        return coefficient;
+    }
+
+    public int getExponent()
+    {
+        return exponent;
+    }
+
     public static Term add(Term t1, Term t2)
     {
         Fraction coefficient = Fraction.add(t1.getCoefficient(), t2.getCoefficient());
@@ -57,5 +67,9 @@ public class Term implements Comparable<Term>
         Fraction coefficient = Fraction.divide(t1.getCoefficient(), t2.getCoefficient());
         int exponent = t1.getExponent() - t2.getExponent();
         return new Term(coefficient, exponent);
+    }
+
+    public static void main(String args[])
+    {
     }
 }
