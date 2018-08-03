@@ -9,61 +9,61 @@ public class Fraction implements Comparable<Fraction>
     {
         this.numerator = numerator;
         this.denominator = denominator;
-        this.simplify();
+        simplify();
     }
 
     public Fraction(int numerator)
     {
         this.numerator = numerator;
-        this.denominator = 1;
-        this.simplify();
+        denominator = 1;
+        simplify();
     }
 
     public Fraction(String fraction)
     {
         boolean positive = (fraction.charAt(0) == '-' ? false : true);
 
-        if (fraction.indexOf('/') != -1)
+        if (fraction.indexOf('/') == -1)
         {
-            this.numerator = Integer.valueOf(fraction.substring(0, fraction.indexOf('/')));
-            this.denominator = Integer.valueOf(fraction.substring(fraction.indexOf('/')+1));
+            numerator = Integer.valueOf(fraction);
+            denominator = 1;
         }
         else
         {
-            this.numerator = Integer.valueOf(fraction);
-            this.denominator = 1;
+            numerator = Integer.valueOf(fraction.substring(0, fraction.indexOf('/')));
+            denominator = Integer.valueOf(fraction.substring(fraction.indexOf('/')+1));
         }
-        this.simplify();
+        simplify();
     }
 
     public int getNumerator()
     {
-        return this.numerator;
+        return numerator;
     }
 
     public int getDenominator()
     {
-        return this.denominator;
+        return denominator;
     }
 
     public String toString()
     {
-        if (this.numerator == 0)
+        if (numerator == 0)
             return "0";
-        else if (this.denominator == 1)
-            return String.valueOf(this.numerator);
-        return String.valueOf(this.numerator) + "/" + String.valueOf(this.denominator);
+        else if (denominator == 1)
+            return String.valueOf(numerator);
+        return String.valueOf(numerator) + "/" + String.valueOf(denominator);
     }
 
     public void simplify()
     {
-        int gcf = greatestCommonFactor(this.numerator, this.denominator);
-        this.numerator /= gcf;
-        this.denominator /= gcf;
-        if (this.denominator < 0)
+        int gcf = greatestCommonFactor(numerator, denominator);
+        numerator /= gcf;
+        denominator /= gcf;
+        if (denominator < 0)
         {
-            this.numerator *= -1;
-            this.denominator *= -1;
+            numerator *= -1;
+            denominator *= -1;
         }
     }
 
@@ -100,7 +100,7 @@ public class Fraction implements Comparable<Fraction>
     public static Fraction add(Fraction f1, Fraction f2)
     {
         int numerator = f1.getNumerator() * f2.getDenominator()
-                        + f2.getNumerator() * f1.getDenominator();
+            + f2.getNumerator() * f1.getDenominator();
         int denominator = f1.getDenominator() * f2.getDenominator();
         Fraction sum = new Fraction(numerator, denominator);
         sum.simplify();
@@ -110,7 +110,7 @@ public class Fraction implements Comparable<Fraction>
     public static Fraction subtract(Fraction f1, Fraction f2)
     {
         int numerator = f1.getNumerator() * f2.getDenominator()
-                        - f2.getNumerator() * f1.getDenominator();
+            - f2.getNumerator() * f1.getDenominator();
         int denominator = f1.getDenominator() * f2.getDenominator();
         Fraction difference = new Fraction(numerator, denominator);
         difference.simplify();
