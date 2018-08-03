@@ -13,7 +13,7 @@ public class Term implements Comparable<Term>
 
     public Term(int coefficient, int exponent)
     {
-        Term(new Fraction(coefficient), exponent);
+        this(new Fraction(coefficient), exponent);
     }
 
     public Fraction getCoefficient()
@@ -41,6 +41,11 @@ public class Term implements Comparable<Term>
             return -1;
 
         return 0;
+    }
+
+    public String toString()
+    {
+        return "(" + coefficient.toString() + ")" + "x^" + exponent;
     }
 
     public static Term add(Term t1, Term t2)
@@ -71,5 +76,8 @@ public class Term implements Comparable<Term>
 
     public static void main(String args[])
     {
+        Term t1 = new Term(1, 1);
+        Term t2 = new Term(1, 2);
+        System.out.println(t1.compareTo(t2));
     }
 }
