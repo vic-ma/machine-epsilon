@@ -78,31 +78,32 @@ public class Polynomial
         this.sort();
     }
 
+    public static Polynomial add(Polynomial p1, Polynomial p2)
+    {
+        Polynomial sum = new Polynomial();
+        for (int i = 0; i < p1.getSize(); i++)
+            sum.addTerm(p1.getTerm(i));
+        for (int i = 0; i < p2.getSize(); i++)
+            sum.addTerm(p2.getTerm(i));
+        sum.simplify();
+        return sum;
+    }
+
     public static Polynomial subtract(Polynomial p1, Polynomial p2)
     {
         Polynomial difference = new Polynomial();
         for (int i = 0; i < p1.getSize(); i++)
-        {
             difference.addTerm(p1.getTerm(i));
-        }
         for (int i = 0; i < p2.getSize(); i++)
-        {
             difference.subtractTerm(p2.getTerm(i));
-        }
         difference.simplify();
         return difference;
     }
 
-    public void printTerms()
+    public static Polynomial divide(Polynomial p1, Polynomial p2)
     {
-        for (int i = 0; i < this.getSize(); i++)
-        {
-            System.out.println(terms.get(i));
-        }
-    }
-
-    public static Polynomial divide(Polynomial dividend, Polynomial divisor)
-    {
+        Polynomial dividend = new Polynomial(p1);
+        Polynomial divisor = new Polynomial(p2);
         Polynomial quotient = new Polynomial();
         Polynomial remainder = dividend;
 
@@ -110,25 +111,21 @@ public class Polynomial
         {
             Term quotientTerm = Term.divide(remainder.getTerm(0), divisor.getTerm(0));
             quotient.addTerm(quotientTerm);
-            Polynomial temp = new Polynomial(divisor);
-            divisor.multiplyTerm(quotientTerm);
-            remainder = Polynomial.subtract(remainder, divisor);
-            divisor = temp;
+            Polynomial tempDivisor = new Polynomial(divisor);
+            tempDivisor.multiplyTerm(quotientTerm);
+            remainder = Polynomial.subtract(remainder, tempDivisor);
         }
         quotient.simplify();
         return quotient;
     }
 
+    public void printTerms()
+    {
+        for (int i = 0; i < terms.size(); i++)
+            System.out.println(terms.get(i));
+    }
+
     public static void main(String args[])
     {
-        Polynomial p1 = new Polynomial();
-        Polynomial p2 = new Polynomial();
-        p1.addTerm(new Term(3, 2));
-        p1.addTerm(new Term(5, 1));
-        p1.addTerm(new Term(2, 0));
-        p2.addTerm(new Term(2, 1));
-        p2.addTerm(new Term(1, 0));
-        Polynomial p3 = Polynomial.divide(p1, p2);
-        p3.printTerms();
     }
 }
