@@ -13,19 +13,18 @@ public class Limit
         this.l = l
     }
 
-    public Polnomial function()
+    public Polnomial getFunction()
     {
         return function;
     }
 
-    public int c()
+    public int getC()
     {
         return c;
     }
 
-    public int l()
+    public int getL()
     {
         return l
     }
-
 }

@@ -72,21 +72,5 @@ public class Inequality
 
     public static void main(String args[])
     {
-        Polynomial f = new Polynomial();
-        f.addTerm(new Term(1, 2));
-        f.addTerm(new Term(-4, 0));
-        Polynomial p = new Polynomial(f);
-        p.subtractTerm(new Term(12, 0));
-        Polynomial xMC = new Polynomial();
-        xMC.addTerm(new Term(1, 1));
-        xMC.addTerm(new Term(-4, 0));
-        Polynomial q = Polynomial.divide(p, xMC);
-        Inequality iXMC = new Inequality(-1, xMC, 1);
-        iXMC.addTerm(q.getTerm(1));
-        iXMC.getLeft().printTerms();
-        System.out.println();
-        iXMC.getCentre().printTerms();
-        System.out.println();
-        iXMC.getRight().printTerms();
     }
 }
