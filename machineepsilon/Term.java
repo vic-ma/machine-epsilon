@@ -20,6 +20,36 @@ public class Term implements Comparable<Term>
 
     public Term(String term)
     {
+        if (term.indexOf("x") == -1)
+        {
+            coefficient = new Fraction(term);
+            exponent = 0;
+            return;
+        }
+        else if (term.indexOf("^") == -1)
+        {
+            exponent = 1;
+        }
+        else
+        {
+            exponent = Integer.valueOf(term.substring(term.indexOf("^")+1));
+        }
+
+        if (term.charAt(0) == 'x')
+        {
+            coefficient = new Fraction(1);
+            return;
+        }
+        else if (term.substring(0, 2).equals("-x"))
+        {
+            coefficient = new Fraction(-1);
+            return;
+        }
+
+
+        if (term.indexOf("/") != -1)
+            term = term.replaceAll("[()]", "");
+        coefficient = new Fraction(term.substring(0, term.indexOf("x")));
     }
 
     public Fraction getCoefficient()
@@ -112,7 +142,7 @@ public class Term implements Comparable<Term>
 
     public static void main(String args[])
     {
-        Term t1 = new Term(new Fraction(-0, 9), 4);
+        Term t1 = new Term("-2/3");
         System.out.println(t1);
     }
 }
