@@ -18,6 +18,10 @@ public class Term implements Comparable<Term>
         this(new Fraction(coefficient), exponent);
     }
 
+    public Term(String term)
+    {
+    }
+
     public Fraction getCoefficient()
     {
         return coefficient;
@@ -47,10 +51,27 @@ public class Term implements Comparable<Term>
 
     public String toString()
     {
-        String coefficient = this.coefficient.toString();
-        String exponent = String.valueOf(this.exponent);
+        String coefficient = String.valueOf(this.coefficient);
 
-    //    if (this.coefficient == 
+        if (this.exponent == 0)
+            return coefficient;
+
+        if (coefficient.equals("1"))
+            coefficient = "";
+        else if (coefficient.equals("-1"))
+            coefficient = "-";
+
+        if (this.coefficient.getDenominator() != 1)
+        {
+            if (this.coefficient.getNumerator() > 0)
+                coefficient = "(" + coefficient + ")";
+            else
+                coefficient = "-(" + coefficient.substring(1) + ")";
+        }
+
+        if (exponent == 1)
+            return coefficient + "x";
+        return coefficient + "x^" + exponent;
     }
 
     public boolean equals(Term term)
@@ -91,8 +112,7 @@ public class Term implements Comparable<Term>
 
     public static void main(String args[])
     {
-        Term t1 = new Term(1, 1);
-        Term t2 = new Term(1, 2);
-        System.out.println(t1.compareTo(t2));
+        Term t1 = new Term(new Fraction(-0, 9), 4);
+        System.out.println(t1);
     }
 }
