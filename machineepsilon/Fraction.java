@@ -1,5 +1,7 @@
 package machineepsilon;
 
+import java.util.*;
+
 public class Fraction implements Comparable<Fraction>
 {
     private int numerator;
@@ -95,6 +97,16 @@ public class Fraction implements Comparable<Fraction>
                 return 1;
             return 0;
         }
+    }
+
+    public boolean equals(Fraction fraction)
+    {
+        return compareTo(fraction) == 0;
+    }
+
+    public int hashCode()
+    {
+        return Objects.hash(numerator, denominator);
     }
 
     public static Fraction add(Fraction f1, Fraction f2)

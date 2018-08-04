@@ -1,5 +1,7 @@
 package machineepsilon;
 
+import java.util.*;
+
 public class Term implements Comparable<Term>
 {
     private Fraction coefficient;
@@ -45,7 +47,20 @@ public class Term implements Comparable<Term>
 
     public String toString()
     {
-        return "(" + coefficient.toString() + ")" + "x^" + exponent;
+        String coefficient = this.coefficient.toString();
+        String exponent = String.valueOf(this.exponent);
+
+    //    if (this.coefficient == 
+    }
+
+    public boolean equals(Term term)
+    {
+        return compareTo(term) == 0;
+    }
+
+    public int hashCode()
+    {
+        return Objects.hash(coefficient, exponent);
     }
 
     public static Term add(Term t1, Term t2)
