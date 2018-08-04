@@ -10,6 +10,34 @@ public class Polynomial
     {
     }
 
+    public Polynomial(String polynomial)
+    {
+        polynomial = polynomial.replace(" ", "");
+        int startIndex = 0;
+        boolean skipNext = false;
+        for (int i = 1; i < polynomial.length(); i++)
+        {
+            if (skipNext)
+            {
+                skipNext = false;
+                continue;
+            }
+            if (polynomial.charAt(i) == '+')
+            {
+                terms.add(new Term(polynomial.substring(startIndex, i)));
+                startIndex = i+1;
+            }
+            else if (polynomial.charAt(i) == '-')
+            {
+                terms.add(new Term(polynomial.substring(startIndex, i)));
+                startIndex = i;
+            }
+        }
+        terms.add(new Term(polynomial.substring(startIndex, polynomial.length())));
+        this.sort();
+        this.simplify();
+    }
+
     public Polynomial(Polynomial polynomial)
     {
         for (int i=0; i < polynomial.getSize(); i++)
@@ -29,6 +57,21 @@ public class Polynomial
     private void sort()
     {
         Collections.sort(terms, Collections.reverseOrder());
+    }
+
+    public String toString()
+    {
+        String polynomial = terms.get(0).toString();
+
+        for (int i = 1; i < terms.size(); i++)
+        {
+            if (terms.get(i).toString().charAt(0) == '-')
+                polynomial += terms.get(i);
+            else
+                polynomial += "+" + terms.get(i);
+        }
+
+        return polynomial;
     }
 
     public void simplify()
@@ -119,13 +162,9 @@ public class Polynomial
         return quotient;
     }
 
-    public void printTerms()
-    {
-        for (int i = 0; i < terms.size(); i++)
-            System.out.println(terms.get(i));
-    }
-
     public static void main(String args[])
     {
+        Polynomial p = new Polynomial("5x^2 - (3/4)x + 32/58 -2 +x +x^3");
+        System.out.println(p);
     }
 }
