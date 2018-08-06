@@ -2,9 +2,9 @@ package machineepsilon;
 
 public class Inequality
 {
-    Polynomial left;
-    Polynomial centre;
-    Polynomial right;
+    private Polynomial left;
+    private Polynomial centre;
+    private Polynomial right;
 
     public Inequality()
     {
@@ -54,20 +54,6 @@ public class Inequality
         left.addTerm(term);
         centre.addTerm(term);
         right.addTerm(term);
-    }
-
-    public void multiplyTerm(Term term)
-    {
-        left.multiplyTerm(term);
-        centre.multiplyTerm(term);
-        right.multiplyTerm(term);
-    }
-
-    public void addInequality(Inequality inequality)
-    {
-        left = Polynomial.add(left, inequality.getLeft());
-        centre = Polynomial.add(left, inequality.getCentre());
-        right = Polynomial.add(left, inequality.getRight());
     }
 
     public static void main(String args[])
