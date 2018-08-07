@@ -2,18 +2,18 @@ package machineepsilon;
 
 public class Limit
 {
-    private Polnomial function;
+    private Polynomial function;
     private int c;
     private int l;
 
-    public Limit(Polnomial function, int c, int l)
+    public Limit(Polynomial function, int c, int l)
     {
         this.function = function;
         this.c = c;
         this.l = l;
     }
 
-    public Polnomial getFunction()
+    public Polynomial getFunction()
     {
         return function;
     }
