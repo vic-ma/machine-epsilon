@@ -10,7 +10,7 @@ public class Limit
     {
         this.function = function;
         this.c = c;
-        this.l = l
+        this.l = l;
     }
 
     public Polnomial getFunction()
@@ -25,6 +25,6 @@ public class Limit
 
     public int getL()
     {
-        return l
+        return l;
     }
 }
