@@ -140,9 +140,16 @@ public class Term implements Comparable<Term>
         return new Term(coefficient, exponent);
     }
 
+    public Fraction valueAt(Fraction x)
+    {
+        Fraction power = new Fraction((int)Math.pow(x.getNumerator(), exponent),
+                                      (int)Math.pow(x.getDenominator(), exponent));
+        return Fraction.multiply(coefficient, power); 
+    }
+
     public static void main(String args[])
     {
-        Term t1 = new Term("-2/3");
-        System.out.println(t1);
+        Term t1 = new Term("-3/5(x)^2");
+        System.out.println(t1.valueAt(new Fraction(5, -3)));
     }
 }
