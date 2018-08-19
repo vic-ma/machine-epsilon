@@ -114,7 +114,7 @@ public class Polynomial
 
     public void multiplyTerm(Term term)
     {
-        for (int i = 0; i < this.getSize(); i++)
+        for (int i = 0; i < terms.size(); i++)
         {
             terms.set(i, Term.multiply(terms.get(i), term));
         }
@@ -162,9 +162,17 @@ public class Polynomial
         return quotient;
     }
 
+    public Fraction valueAt(Fraction x)
+    {
+        Fraction value = new Fraction(0);
+        for (int i = 0; i < terms.size(); i++)
+            value = Fraction.add(value, terms.get(i).valueAt(x));
+        return value;
+    }
+
     public static void main(String args[])
     {
-        Polynomial p = new Polynomial("5x^2 - (3/4)x + 32/58 -2 +x +x^3");
-        System.out.println(p);
+        Polynomial p = new Polynomial("3x^2 + (2/3)x + 1");
+        System.out.println(p.valueAt(new Fraction(-1, 2)));
     }
 }
