@@ -6,14 +6,21 @@ import java.awt.event.*;
 
 public class GUI
 {
+
+    JFrame frame;
+    JTextField input;
+    JTextArea output;
+    JButton exitButton;
+
     public void createGUI()
     {
-        JFrame frame = new JFrame();
-        JTextField input = new JTextField();
-        JTextArea output = new JTextArea();
-        JButton exitButton = new JButton("Exit");
+        frame = new JFrame();
+        input = new JTextField();
+        output = new JTextArea();
+        exitButton = new JButton("Exit");
 
         input.setHorizontalAlignment(JTextField.CENTER);
+        input.setText("lim x→c f(x) = L");
         input.addActionListener(new InputListener());
 
         exitButton.addActionListener(new ExitListener());
@@ -31,7 +38,14 @@ public class GUI
     {
         public void actionPerformed(ActionEvent e)
         {
-            MachineEpsilon.generateProof();
+            try
+            {
+                MachineEpsilon.generateProof(new Limit(input.getText()), output);
+            }
+            catch (Exception ex)
+            {
+                input.setText("lim x→c f(x) = L");
+            }
         }
     }
 
