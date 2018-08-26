@@ -57,6 +57,16 @@ public class Fraction implements Comparable<Fraction>
         return String.valueOf(numerator) + "/" + String.valueOf(denominator);
     }
 
+    public String triangleString()
+    {
+        int absoluteNumerator = (numerator > 0 ? numerator : -1*numerator);
+        if (denominator == 1)
+            return "|" + String.valueOf(absoluteNumerator) + "|";
+        else
+            return ("|" + String.valueOf(absoluteNumerator) + "/"
+                    + String.valueOf(denominator) + "|");
+    }
+
     public void simplify()
     {
         int gcf = greatestCommonFactor(numerator, denominator);

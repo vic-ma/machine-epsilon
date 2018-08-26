@@ -104,6 +104,14 @@ public class Term implements Comparable<Term>
         return coefficient + "x^" + exponent;
     }
 
+    public String triangleString()
+    {
+        if (exponent == 0)
+            return (coefficient.triangleString());
+        return (coefficient.triangleString() + "|"
+                + this.toString().substring(this.toString().indexOf("x")) + "|");
+    }
+
     public boolean equals(Term term)
     {
         return compareTo(term) == 0;
@@ -149,7 +157,5 @@ public class Term implements Comparable<Term>
 
     public static void main(String args[])
     {
-        Term t1 = new Term("-3/5(x)^2");
-        System.out.println(t1.valueAt(new Fraction(5, -3)));
     }
 }

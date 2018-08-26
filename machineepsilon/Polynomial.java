@@ -74,6 +74,18 @@ public class Polynomial
         return polynomial;
     }
 
+    public String triangleString()
+    {
+        String polynomial = terms.get(0).triangleString();
+
+        for (int i = 1; i < terms.size(); i++)
+        {
+            polynomial += "+" + terms.get(i).triangleString();
+        }
+
+        return polynomial;
+    }
+
     public void simplify()
     {
         this.sort();
@@ -172,7 +184,5 @@ public class Polynomial
 
     public static void main(String args[])
     {
-        Polynomial p = new Polynomial("3x^2 + (2/3)x + 1");
-        System.out.println(p.valueAt(new Fraction(-1, 2)));
     }
 }
