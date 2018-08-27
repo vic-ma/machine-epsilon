@@ -111,9 +111,13 @@ public class Term implements Comparable<Term>
 
     public String absString()
     {
+        String term = this.toString();
+
         if (exponent == 0)
-            return this.toString();
-        return "|" + this.toString() + "|";
+            return term;
+        if (exponent != 1)
+            return term.substring(0, term.indexOf("x")) + "|x|" + term.substring(term.indexOf("^"));
+        return term.substring(0, term.indexOf("x")) + "|x|";
     }
 
     public String argString(String arg)

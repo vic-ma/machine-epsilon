@@ -21,9 +21,9 @@ public class GUI
         exitButton = new JButton("Exit");
 
         input.setHorizontalAlignment(JTextField.CENTER);
-        //input.setText("lim x→c f(x) = L");
+        input.setText("lim x→c f(x) = L");
+        input.setText("lim x→3 x^3 -2x +5 = 26");
         input.setFont(input.getFont().deriveFont(FONT_SIZE));
-        input.setText("lim x→1/2 x^2+3/4 = 1");
         input.addActionListener(new InputListener());
 
         output.setFont(output.getFont().deriveFont(FONT_SIZE));

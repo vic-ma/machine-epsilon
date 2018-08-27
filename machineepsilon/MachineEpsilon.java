@@ -27,7 +27,7 @@ public class MachineEpsilon
                                  l.getC(), quotient, quotient);
 
         Polynomial absQuotient = quotient.abs();
-        output += String.format("By the Triangle Inequality,\n\n\tδ|%s| < δ(%s)\n\n",
+        output += String.format("By the Triangle Inequality,\n\n\tδ|%s| ≤ δ(%s)\n\n",
                                 quotient, absQuotient.abs().absString());
 
         output += String.format("Assume that |x-%s| < 1, so that\n\n", l.getC());
@@ -39,7 +39,7 @@ public class MachineEpsilon
                                 leftSide, rightSide, absMax);
 
         Fraction max = absQuotient.valueAt(absMax);
-        output += String.format("Then,\n\n\tδ(%s) < δ(%s) = δ%s\t(*)\n\n\n", absQuotient,
+        output += String.format("Then,\n\n\tδ(%s) < δ(%s) = δ%s\t(*)\n\n\n", absQuotient.absString(),
                                 absQuotient.argString("("+absMax+")"), max);
 
         output += "PROOF\n\n";
