@@ -96,8 +96,19 @@ public class Polynomial
         return polynomial;
     }
 
-    public String argString()
+    public String argString(String arg)
     {
+        String polynomial = terms.get(0).argString(arg);
+
+        for (int i = 1; i < terms.size(); i++)
+        {
+            if (terms.get(i).toString().charAt(0) == '-')
+                polynomial += terms.get(i).argString(arg);
+            else
+                polynomial += "+" + terms.get(i).argString(arg);
+        }
+
+        return polynomial;
     }
 
     public void simplify()
@@ -198,5 +209,7 @@ public class Polynomial
 
     public static void main(String args[])
     {
+        Polynomial p = new Polynomial("3/4x^5 -32/56x +x^3 -2 +x^2");
+        System.out.println(p.argString("M"));
     }
 }

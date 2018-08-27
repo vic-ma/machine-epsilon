@@ -116,6 +116,31 @@ public class Term implements Comparable<Term>
         return "|" + this.toString() + "|";
     }
 
+    public String argString(String arg)
+    {
+        String coefficient = String.valueOf(this.coefficient);
+
+        if (this.exponent == 0)
+            return coefficient;
+
+        if (coefficient.equals("1"))
+            coefficient = "";
+        else if (coefficient.equals("-1"))
+            coefficient = "-";
+
+        if (this.coefficient.getDenominator() != 1)
+        {
+            if (this.coefficient.getNumerator() > 0)
+                coefficient = "(" + coefficient + ")";
+            else
+                coefficient = "-(" + coefficient.substring(1) + ")";
+        }
+
+        if (exponent == 1)
+            return coefficient + arg;
+        return coefficient + arg +"^" + exponent;
+    }
+
     public boolean equals(Term term)
     {
         return compareTo(term) == 0;
@@ -155,7 +180,7 @@ public class Term implements Comparable<Term>
     public Fraction valueAt(Fraction x)
     {
         Fraction power = new Fraction((int)Math.pow(x.getNumerator(), exponent),
-                                      (int)Math.pow(x.getDenominator(), exponent));
+                (int)Math.pow(x.getDenominator(), exponent));
         return Fraction.multiply(coefficient, power); 
     }
 

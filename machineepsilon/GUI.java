@@ -34,7 +34,7 @@ public class GUI
         frame.add(output, BorderLayout.CENTER);
         frame.add(exitButton, BorderLayout.SOUTH);
 
-        frame.setSize(800, 800);
+        frame.setSize(1000, 1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }

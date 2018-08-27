@@ -23,7 +23,7 @@ public class MachineEpsilon
                                 quotient);
 
         output += String.format("Assume that |x-c| = |x-%s| < δ, so that\n\n\t"
-                                +"|f(x)-L| = |x-%s||%s| < δ|%s|\n\n", l.getC(),
+                                +"|f(x)-L| = |x-%s||%s| < δ|%s|\t\n\n", l.getC(),
                                  l.getC(), quotient, quotient);
 
         Polynomial absQuotient = quotient.abs();
@@ -35,10 +35,21 @@ public class MachineEpsilon
         Fraction leftSide = Fraction.subtract(new Fraction(-1), xMinusC.getTerm(1).getCoefficient());
         Fraction rightSide = Fraction.subtract(new Fraction(1), xMinusC.getTerm(1).getCoefficient());
         Fraction absMax = Fraction.max(leftSide.abs(), rightSide.abs());
-        output += String.format("\t-1 < x-%s < 1 ⇒ %s < x < %s ⇒ |x| < %s\n\n", l.getC(),
+        output += String.format("\t-1 < x-%s < 1 ⇒ %s < x < %s ⇒ |x| < %s\t\n\n", l.getC(),
                                 leftSide, rightSide, absMax);
 
-        output += String.format("Then\n\n\tδ(%s) < δ", absQuotient);
+        Fraction max = absQuotient.valueAt(absMax);
+        output += String.format("Then,\n\n\tδ(%s) < δ(%s) = δ%s\t(*)\n\n\n", absQuotient,
+                                absQuotient.argString("("+absMax+")"), max);
+
+        output += "PROOF\n\n";
+
+        output += String.format("Let ϵ > 0.\n\nSet δ = max{1, ϵ/%s}.\n\n", max);
+
+        output += String.format("Assume |x-%s| < δ.\n\nThen, since |x-%s| < δ ≤ 1,\n\n\t"
+                                +"|f(x)-L| < %sδ, by (*)\n\n", l.getC(), l.getC(), max);
+
+        output += String.format("And since δ ≤ ϵ/%s,\n\n\t%sδ ≤ %s(ϵ/%s) = ϵ\t∎", max, max, max, max);
 
         outputBox.setText(output);
     }
