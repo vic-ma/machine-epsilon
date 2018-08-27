@@ -59,6 +59,16 @@ public class Polynomial
         Collections.sort(terms, Collections.reverseOrder());
     }
 
+    public Polynomial abs()
+    {
+        Polynomial absolute = new Polynomial();
+        for (int i = 0; i < terms.size(); i++)
+        {
+            absolute.addTerm(terms.get(i).abs());
+        }
+        return absolute;
+    }
+
     public String toString()
     {
         String polynomial = terms.get(0).toString();
@@ -74,16 +84,20 @@ public class Polynomial
         return polynomial;
     }
 
-    public String triangleString()
+    public String absString()
     {
-        String polynomial = terms.get(0).triangleString();
+        String polynomial = terms.get(0).absString();
 
         for (int i = 1; i < terms.size(); i++)
         {
-            polynomial += "+" + terms.get(i).triangleString();
+            polynomial += "+" + terms.get(i).absString();
         }
 
         return polynomial;
+    }
+
+    public String argString()
+    {
     }
 
     public void simplify()

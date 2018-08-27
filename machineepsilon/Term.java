@@ -79,6 +79,11 @@ public class Term implements Comparable<Term>
         return 0;
     }
 
+    public Term abs()
+    {
+        return new Term(coefficient.abs(), exponent);
+    }
+
     public String toString()
     {
         String coefficient = String.valueOf(this.coefficient);
@@ -104,12 +109,11 @@ public class Term implements Comparable<Term>
         return coefficient + "x^" + exponent;
     }
 
-    public String triangleString()
+    public String absString()
     {
         if (exponent == 0)
-            return (coefficient.triangleString());
-        return (coefficient.triangleString() + "|"
-                + this.toString().substring(this.toString().indexOf("x")) + "|");
+            return this.toString();
+        return "|" + this.toString() + "|";
     }
 
     public boolean equals(Term term)

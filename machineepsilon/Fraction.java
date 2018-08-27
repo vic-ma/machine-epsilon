@@ -48,6 +48,11 @@ public class Fraction implements Comparable<Fraction>
         return denominator;
     }
 
+    public Fraction abs()
+    {
+        return new Fraction(Math.abs(numerator), denominator);
+    }
+
     public String toString()
     {
         if (numerator == 0)
@@ -55,16 +60,6 @@ public class Fraction implements Comparable<Fraction>
         else if (denominator == 1)
             return String.valueOf(numerator);
         return String.valueOf(numerator) + "/" + String.valueOf(denominator);
-    }
-
-    public String triangleString()
-    {
-        int absoluteNumerator = (numerator > 0 ? numerator : -1*numerator);
-        if (denominator == 1)
-            return "|" + String.valueOf(absoluteNumerator) + "|";
-        else
-            return ("|" + String.valueOf(absoluteNumerator) + "/"
-                    + String.valueOf(denominator) + "|");
     }
 
     public void simplify()
@@ -90,21 +85,21 @@ public class Fraction implements Comparable<Fraction>
         if (this.numerator > 0)
         {
             if (frac.getNumerator() < 0)
-                return -1;
-            if (difference.getNumerator() < 0)
                 return 1;
-            else if (difference.getNumerator() > 0)
+            if (difference.getNumerator() < 0)
                 return -1;
+            else if (difference.getNumerator() > 0)
+                return 1;
             return 0;
         }
         else
         {
             if (frac.getNumerator() > 0)
-                return 1;
-            if (difference.getNumerator() > 0)
                 return -1;
-            else if (difference.getNumerator() < 0)
+            if (difference.getNumerator() > 0)
                 return 1;
+            else if (difference.getNumerator() < 0)
+                return -1;
             return 0;
         }
     }
@@ -117,6 +112,11 @@ public class Fraction implements Comparable<Fraction>
     public int hashCode()
     {
         return Objects.hash(numerator, denominator);
+    }
+
+    public static Fraction max(Fraction f1, Fraction f2)
+    {
+        return (f1.compareTo(f2) > 0 ? f1 : f2);
     }
 
     public static Fraction add(Fraction f1, Fraction f2)

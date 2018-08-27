@@ -43,15 +43,15 @@ public class GUI
     {
         public void actionPerformed(ActionEvent e)
         {
-            try
-            {
+//            try
+//            {
                 MachineEpsilon.generateProof(new Limit(input.getText()), output);
-            }
-            catch (Exception ex)
-            {
-                System.out.println("Invalid Input!");
-                input.setText("lim x→c f(x) = L");
-            }
+//            }
+//            catch (Exception ex)
+//            {
+//                System.out.println("Invalid Input!");
+//                input.setText("lim x→c f(x) = L");
+//            }
         }
     }
 
