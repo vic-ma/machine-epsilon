@@ -22,7 +22,9 @@ public class GUI
 
         input.setHorizontalAlignment(JTextField.CENTER);
         input.setText("lim x→c f(x) = L");
-        input.setText("lim x→3 x^3 -2x +5 = 26");
+        input.setText("lim x→2 -(1/4)x^4-(1/2)x^2 = -6");
+        input.setText("lim x→-3/5 -56/78 = -56/78");
+        input.setText("lim x→-3 5x = -15");
         input.setFont(input.getFont().deriveFont(FONT_SIZE));
         input.addActionListener(new InputListener());
 

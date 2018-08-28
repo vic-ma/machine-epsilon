@@ -34,7 +34,6 @@ public class Polynomial
             }
         }
         terms.add(new Term(polynomial.substring(startIndex, polynomial.length())));
-        this.sort();
         this.simplify();
     }
 
@@ -54,11 +53,6 @@ public class Polynomial
         return terms.get(0).getExponent();
     }
 
-    private void sort()
-    {
-        Collections.sort(terms, Collections.reverseOrder());
-    }
-
     public Polynomial abs()
     {
         Polynomial absolute = new Polynomial();
@@ -67,6 +61,32 @@ public class Polynomial
             absolute.addTerm(terms.get(i).abs());
         }
         return absolute;
+    }
+
+    private void sort()
+    {
+        Collections.sort(terms, Collections.reverseOrder());
+    }
+
+    public void simplify()
+    {
+        this.sort();
+        for (int i=0; i < terms.size()-1; i++)
+        {
+            Term current = terms.get(i);
+            Term next = terms.get(i+1);
+            if (current.getExponent() == next.getExponent())
+            {
+                Term sum = Term.add(current, next);
+                if (sum.getCoefficient().getNumerator() != 0)
+                {
+                    terms.add(i, sum);
+                    i--;
+                }
+                terms.remove(current);
+                terms.remove(next);
+            }
+        }
     }
 
     public String toString()
@@ -109,27 +129,6 @@ public class Polynomial
         }
 
         return polynomial;
-    }
-
-    public void simplify()
-    {
-        this.sort();
-        for (int i=0; i < terms.size()-1; i++)
-        {
-            Term current = terms.get(i);
-            Term next = terms.get(i+1);
-            if (current.getExponent() == next.getExponent())
-            {
-                Term sum = Term.add(current, next);
-                if (sum.getCoefficient().getNumerator() != 0)
-                {
-                    terms.add(i, sum);
-                    i--;
-                }
-                terms.remove(current);
-                terms.remove(next);
-            }
-        }
     }
 
     public Term getTerm(int index)
