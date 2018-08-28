@@ -11,7 +11,6 @@ public class GUI
     JTextField input;
     JTextArea output;
     JScrollPane scrollPane;
-    JButton exitButton;
     float FONT_SIZE = 20f;
 
     public void createGUI()
@@ -20,7 +19,6 @@ public class GUI
         input = new JTextField();
         output = new JTextArea();
         scrollPane = new JScrollPane(output);
-        exitButton = new JButton("Exit");
 
         input.setHorizontalAlignment(JTextField.CENTER);
         input.setText("lim x→c f(x) = L");
@@ -30,11 +28,8 @@ public class GUI
 
         output.setFont(output.getFont().deriveFont(FONT_SIZE));
 
-        exitButton.addActionListener(new ExitListener());
-
         frame.add(input, BorderLayout.NORTH);
         frame.add(scrollPane, BorderLayout.CENTER);
-        frame.add(exitButton, BorderLayout.SOUTH);
 
         frame.setSize(1000, 1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,14 +49,6 @@ public class GUI
 //                System.out.println("Invalid Input!");
 //                input.setText("lim x→c f(x) = L");
 //            }
-        }
-    }
-
-    class ExitListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-            System.exit(0);
         }
     }
 }
