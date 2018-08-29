@@ -22,6 +22,8 @@ lim x→c f(x) = L
 
 ## Example
 
+&nbsp;
+
 ![](https://latex.codecogs.com/png.latex?%5Cdpi%7B200%7D%20%5Clim_%7Bx%20%5Cto%20%5Cfrac23%7D%5Cleft%5B6x-%5Cfrac12%5Cright%5D%3D%5Cfrac72)
 
 ![](https://lh6.googleusercontent.com/inv8cYoQbJR0fQcLY4H_julpSLVuPtgHbqjLMHuHJwVO-sG7A5C8JHRKiBibsod7ZQ_wj5cfYZr66g=w1920-h972-rw)
