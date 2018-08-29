@@ -26,9 +26,13 @@ lim x→c f(x) = L
 
 ![](https://lh6.googleusercontent.com/inv8cYoQbJR0fQcLY4H_julpSLVuPtgHbqjLMHuHJwVO-sG7A5C8JHRKiBibsod7ZQ_wj5cfYZr66g=w1920-h972-rw)
 
+d
+
 ![](https://latex.codecogs.com/png.latex?%5Cdpi%7B200%7D%20%5Clim_%7Bx%20%5Cto%202%7D%5Cleft%5B3x%5E2-2x-3%5Cright%5D%3D5)
 
 ![](https://lh5.googleusercontent.com/fQm_WiTGSl0T5XUsO14epoxBPDSRgtLjo3aqVD0_LMjp-2cmEidAu3cfmbIKYjFNIu-NP5ZTuQRWtQ=w1920-h972-rw)
+
+&nbsp;
 
 ![](https://latex.codecogs.com/png.latex?%5Cdpi%7B200%7D%20%5Clim_%7Bx%20%5Cto%20-%5Cfrac%7B32%7D%7B56%7D%7D%20%5Cfrac%7B73%7D%7B62%7D%20%3D%20%5Cfrac%7B73%7D%7B62%7D)
 
