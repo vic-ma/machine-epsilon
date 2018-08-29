@@ -37,7 +37,7 @@ public class MachineEpsilon
             Polynomial xMinusC = new Polynomial();
             xMinusC.addTerm(new Term(1, 1));
             xMinusC.subtractTerm(new Term(c, 0));
-            output += String.format("Assume 0 < |x-c| = |%s| < δ\n\n", xMinusC);
+            output += String.format("Assume |x-c| = |%s| < δ\n\n", xMinusC);
 
             Polynomial fMinusL = new Polynomial(f);
             fMinusL.subtractTerm(new Term(l, 0));
@@ -58,22 +58,22 @@ public class MachineEpsilon
         Polynomial fMinusL = new Polynomial(f);
         fMinusL.subtractTerm(new Term(l, 0));
 
-        output += String.format("\t|f(x)-L|/|x-c|\t= |%s|/|x-%s|\n\t\t= |%s|\n\n", fMinusL, c, quotient);
+        output += String.format("\t|f(x)-L|/|x-c|\t= |%s|/|%s|\n\t\t= |%s|\n\n", fMinusL, xMinusC, quotient);
 
-        output += String.format("Assume that 0 < |x-c| = |x-%s| < δ, so that\n\n\t"
-                                +"|f(x)-L| \t= |x-%s||%s|\n\t\t< δ|%s|\t\n\n", c, c, quotient, quotient);
+        output += String.format("Assume that |x-c| = |%s| < δ, so that\n\n\t"
+                                +"|f(x)-L| \t= |%s||%s|\n\t\t< δ|%s|\t\n\n", xMinusC, xMinusC, quotient, quotient);
 
         Polynomial absQuotient = quotient.abs();
         output += String.format("Which, by the Triangle Inequality,\n\n\t\t ≤ δ(%s)\n\n",
                                 absQuotient.absString());
 
-        output += String.format("Assume that |x-%s| < 1, so that\n\n", c);
+        output += String.format("Assume that |%s| < 1, so that\n\n", xMinusC);
 
         Fraction leftSide = Fraction.subtract(new Fraction(-1), xMinusC.getTerm(1).getCoefficient());
         Fraction rightSide = Fraction.subtract(new Fraction(1), xMinusC.getTerm(1).getCoefficient());
         Fraction absMax = Fraction.max(leftSide.abs(), rightSide.abs());
-        output += String.format("\t-1 < x-%s < 1  ⇒  %s < x < %s  ⇒  |x| < %s\t\n\n",
-                                c, leftSide, rightSide, absMax);
+        output += String.format("\t-1 < %s < 1  ⇒  %s < x < %s  ⇒  |x| < %s\t\n\n",
+                                xMinusC, leftSide, rightSide, absMax);
 
         Fraction kFrac = absQuotient.valueAt(absMax);
         String kStr = (kFrac.getDenominator() == 1 ? kFrac.toString() : "("+kFrac.toString()+")");
@@ -87,13 +87,13 @@ public class MachineEpsilon
             delta = "ϵ/" + kStr;
         else
             delta = kFrac.getDenominator() + "ϵ/" + kFrac.getNumerator();
-        output += String.format("Let ϵ > 0\n\nSet δ = max{1, %s}\n\n", delta);
+        output += String.format("Let ϵ > 0\n\nSet δ = min{1, %s}\n\n", delta);
 
-        output += String.format("Assume |x-%s| < δ\n\nThen, since |x-%s| < δ ≤ 1,\n\n\t"
-                                +"|f(x)-L| < %sδ, by (*)\n\n", c, c, kStr);
+        output += String.format("Assume |%s| < δ\n\nThen, since |%s| < δ ≤ 1,\n\n\t"
+                                +"|f(x)-L| < %sδ, by (*)\n\n", xMinusC, xMinusC, kStr);
 
-        output += String.format("And since δ ≤ ϵ/%s,\n\n\t%sδ ≤ %s(%s) = ϵ ∎",
-                                kStr, kStr, kStr, delta);
+        output += String.format("And since δ ≤ %s,\n\n\t%sδ ≤ %s(%s) = ϵ ∎",
+                                delta, kStr, kStr, delta);
 
         outputBox.setText(output);
     }
