@@ -23,6 +23,7 @@ public class GUI
         input.setHorizontalAlignment(JTextField.CENTER);
         input.setText("lim x→c f(x) = L");
         input.setText("lim x→2 -(1/4)x^4-(1/2)x^2 = -6");
+        input.setText("lim x→2 5x = 10");
         input.setFont(input.getFont().deriveFont(FONT_SIZE));
         input.addActionListener(new InputListener());
 
@@ -40,15 +41,16 @@ public class GUI
     {
         public void actionPerformed(ActionEvent e)
         {
-//            try
-//            {
+            try
+            {
                 MachineEpsilon.generateProof(new Limit(input.getText()), output);
-//            }
-//            catch (Exception ex)
-//            {
-//                System.out.println("Invalid Input!");
-//                input.setText("lim x→c f(x) = L");
-//            }
+            }
+            catch (Exception ex)
+            {
+                System.out.println("Invalid Input!");
+                input.setText("lim x→c f(x) = L");
+                output.setText("");
+            }
         }
     }
 }
