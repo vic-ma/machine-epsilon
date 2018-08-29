@@ -17,3 +17,5 @@ lim x→c f(x) = L
 **Fractions** are of the form `a` or `a/b`, with an optional preceding minus sign (`-`)
 
 **Terms** are of the form `a` or`a/b` or `ax` or `(a/b)x` or `x^n` or `ax^n`  or `(a/b)x^n`
+
+*a, b ∈ ℤ; n ∈ ℕ; x is the character 'x'*
