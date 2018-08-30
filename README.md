@@ -1,5 +1,7 @@
-# MACHINE_εpsilon
-This program generates epsilon-delta proofs for single-variable polynomial limits.
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/23c795639c800469c2beb6a68c3197c43123e350)
+
+# Machine Epsilon
+This program generates epsilon-delta proofs for polynomial limits.
 
 ## Install
 Java 8+
