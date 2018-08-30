@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Fraction implements Comparable<Fraction>
 {
-    private int numerator;
-    private int denominator;
+    private int numerator     // Contains sign information (positive or negative)
+    private int denominator;  // Always positive
 
     public Fraction(int numerator, int denominator)
     {
@@ -87,26 +87,26 @@ public class Fraction implements Comparable<Fraction>
     {
         // Return -1, 0, or 1, iff this Fraction is less than, equal to, or greater than frac
 
-        Fraction difference = Fraction.subtract(this, frac);
+        Fraction difference = Fraction.subtract(this, frac);  // this MINUS frac
 
-        if (this.numerator > 0)
+        if (this.numerator > 0)  // if this Fraction is positive
         {
-            if (frac.getNumerator() < 0)
+            if (frac.getNumerator() < 0)  // if this is positive and frac is negative
                 return 1;
-            if (difference.getNumerator() < 0)
+            if (difference.getNumerator() < 0)  // if difference is negative
                 return -1;
-            else if (difference.getNumerator() > 0)
+            else if (difference.getNumerator() > 0)  // if difference is positive
                 return 1;
             return 0;
         }
-        else
+        else  // this Fraction is non-positive
         {
-            if (frac.getNumerator() > 0)
+            if (frac.getNumerator() > 0)  // if this is non-positive and frac is positive
                 return -1;
-            if (difference.getNumerator() > 0)
+            if (difference.getNumerator() < 0)  // if difference is negative
+                return -1;
+            else if (difference.getNumerator() > 0)  // if difference is positive
                 return 1;
-            else if (difference.getNumerator() < 0)
-                return -1;
             return 0;
         }
     }

@@ -20,35 +20,39 @@ public class Term implements Comparable<Term>
 
     public Term(String term)
     {
-        if (term.indexOf("x") == -1)
+        if (term.indexOf("x") == -1)  // If term is constant
         {
             coefficient = new Fraction(term);
             exponent = 0;
             return;
         }
-        else if (term.indexOf("^") == -1)
+        else if (term.indexOf("^") == -1)  // If term is linear
         {
             exponent = 1;
         }
-        else
+        else  // term has exponent >= 2
         {
             exponent = Integer.valueOf(term.substring(term.indexOf("^")+1));
         }
 
-        if (term.charAt(0) == 'x')
+        // Exponent is set
+        // Now, set the coefficient
+
+        if (term.charAt(0) == 'x')  // If coefficient is 1
         {
             coefficient = new Fraction(1);
             return;
         }
-        else if (term.substring(0, 2).equals("-x"))
+        else if (term.substring(0, 2).equals("-x"))  // If coefficient is -1
         {
             coefficient = new Fraction(-1);
             return;
         }
 
 
-        if (term.indexOf("/") != -1)
-            term = term.replaceAll("[()]", "");
+        if (term.indexOf("/") != -1)  // If coefficient is a fraction
+            term = term.replaceAll("()", "");
+
         coefficient = new Fraction(term.substring(0, term.indexOf("x")));
     }
 
@@ -64,11 +68,16 @@ public class Term implements Comparable<Term>
 
     public int compareTo(Term term)
     {
+        // Return -1, 0, or 1, iff this Term is less than, equal to, or greater than term
+
         int exponentCompare = this.exponent - term.getExponent();
         if (exponentCompare > 0)
             return 1;
         else if (exponentCompare < 0)
             return -1;
+
+        // Exponents are equal
+        // So, compare coefficients
 
         int coefficientCompare = this.coefficient.compareTo(term.getCoefficient());
         if (coefficientCompare > 0)
@@ -81,6 +90,7 @@ public class Term implements Comparable<Term>
 
     public Term abs()
     {
+        // Return absolute value of this Term
         return new Term(coefficient.abs(), exponent);
     }
 
@@ -111,6 +121,9 @@ public class Term implements Comparable<Term>
 
     public String absString()
     {
+        // Assuming this Term is the result of calling abs() on a Term,
+        // return its String representation, with absolute value bars ("|") around x
+
         String term = this.toString();
 
         if (exponent == 0)
@@ -122,6 +135,8 @@ public class Term implements Comparable<Term>
 
     public String argString(String arg)
     {
+        // Return this Term, but with "x" substituted for "(arg)"
+
         String coefficient = String.valueOf(this.coefficient);
 
         if (this.exponent == 0)
@@ -147,6 +162,7 @@ public class Term implements Comparable<Term>
 
     public boolean equals(Term term)
     {
+        // Return whether this Term equals term
         return compareTo(term) == 0;
     }
 
@@ -157,18 +173,21 @@ public class Term implements Comparable<Term>
 
     public static Term add(Term t1, Term t2)
     {
+        // Return the sum of two Terms
         Fraction coefficient = Fraction.add(t1.getCoefficient(), t2.getCoefficient());
         return new Term(coefficient, t1.getExponent());
     }
 
     public static Term subtract(Term t1, Term t2)
     {
+        // Return the difference of two Terms
         Fraction coefficient = Fraction.subtract(t1.getCoefficient(), t2.getCoefficient());
         return new Term(coefficient, t1.getExponent());
     }
 
     public static Term multiply(Term t1, Term t2)
     {
+        // Return the product of two Terms
         Fraction coefficient = Fraction.multiply(t1.getCoefficient(), t2.getCoefficient());
         int exponent = t1.getExponent() + t2.getExponent();
         return new Term(coefficient, exponent);
@@ -176,6 +195,7 @@ public class Term implements Comparable<Term>
 
     public static Term divide(Term t1, Term t2)
     {
+        // Return the quotient of two Terms
         Fraction coefficient = Fraction.divide(t1.getCoefficient(), t2.getCoefficient());
         int exponent = t1.getExponent() - t2.getExponent();
         return new Term(coefficient, exponent);
@@ -183,12 +203,9 @@ public class Term implements Comparable<Term>
 
     public Fraction valueAt(Fraction x)
     {
+        // Return the value of this Term, given a value for x
         Fraction power = new Fraction((int)Math.pow(x.getNumerator(), exponent),
                 (int)Math.pow(x.getDenominator(), exponent));
         return Fraction.multiply(coefficient, power); 
-    }
-
-    public static void main(String args[])
-    {
     }
 }
