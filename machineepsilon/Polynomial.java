@@ -39,22 +39,26 @@ public class Polynomial
 
     public Polynomial(Polynomial polynomial)
     {
+        // Create a copy of polynomial
         for (int i=0; i < polynomial.getSize(); i++)
             terms.add(polynomial.getTerm(i));
     }
 
     public int getSize()
     {
+        // Return the number of terms this Polynomial has
         return terms.size();
     }
 
     public int getDegree()
     {
+        // Return the degree of this Polynomial
         return terms.get(0).getExponent();
     }
 
     public Polynomial abs()
     {
+        // Return version of this Polynomial, where all Terms are absolute values of themselves
         Polynomial absolute = new Polynomial();
         for (int i = 0; i < terms.size(); i++)
         {
@@ -65,11 +69,13 @@ public class Polynomial
 
     private void sort()
     {
+        // Sort Terms in descending order
         Collections.sort(terms, Collections.reverseOrder());
     }
 
     public void simplify()
     {
+        // Collect like Terms
         this.sort();
         for (int i=0; i < terms.size()-1; i++)
         {
@@ -106,6 +112,9 @@ public class Polynomial
 
     public String absString()
     {
+        // Assuming this Term is the result of calling abs() on a Polynomial,
+        // return its String representation, with absolute value bars ("|") around x
+
         String polynomial = terms.get(0).absString();
 
         for (int i = 1; i < terms.size(); i++)
@@ -118,6 +127,8 @@ public class Polynomial
 
     public String argString(String arg)
     {
+        // Return this Polynomial, but with "x" substituted for "(arg)"
+
         String polynomial = terms.get(0).argString(arg);
 
         for (int i = 1; i < terms.size(); i++)
@@ -133,23 +144,27 @@ public class Polynomial
 
     public Term getTerm(int index)
     {
+        // Return the index-th Term of this Polynomial
         return terms.get(index);
     }
 
     public void addTerm(Term term)
     {
+        // Add a Term to this Polynomial
         terms.add(term);
         this.simplify();
     }
 
     public void subtractTerm(Term term)
     {
+        // Subtract a Term from this Polynomial
         term = Term.multiply(term, new Term(-1, 0));
         addTerm(term);
     }
 
     public void multiplyTerm(Term term)
     {
+        // Multiply a Term into this Polynomial
         for (int i = 0; i < terms.size(); i++)
         {
             terms.set(i, Term.multiply(terms.get(i), term));
@@ -159,6 +174,7 @@ public class Polynomial
 
     public static Polynomial add(Polynomial p1, Polynomial p2)
     {
+        // Return the sum of two Polynomials
         Polynomial sum = new Polynomial();
         for (int i = 0; i < p1.getSize(); i++)
             sum.addTerm(p1.getTerm(i));
@@ -170,6 +186,7 @@ public class Polynomial
 
     public static Polynomial subtract(Polynomial p1, Polynomial p2)
     {
+        // Return the difference between two Polynomials
         Polynomial difference = new Polynomial();
         for (int i = 0; i < p1.getSize(); i++)
             difference.addTerm(p1.getTerm(i));
@@ -181,6 +198,8 @@ public class Polynomial
 
     public static Polynomial divide(Polynomial p1, Polynomial p2)
     {
+        // Return the quotient of two Polynomial
+
         Polynomial dividend = new Polynomial(p1);
         Polynomial divisor = new Polynomial(p2);
         Polynomial quotient = new Polynomial();
@@ -200,15 +219,10 @@ public class Polynomial
 
     public Fraction valueAt(Fraction x)
     {
+        // Return the value of this Polynomial, given a value for x
         Fraction value = new Fraction(0);
         for (int i = 0; i < terms.size(); i++)
             value = Fraction.add(value, terms.get(i).valueAt(x));
         return value;
-    }
-
-    public static void main(String args[])
-    {
-        Polynomial p = new Polynomial("3/4x^5 -32/56x +x^3 -2 +x^2");
-        System.out.println(p.argString("M"));
     }
 }

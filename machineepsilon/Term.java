@@ -180,7 +180,7 @@ public class Term implements Comparable<Term>
 
     public static Term subtract(Term t1, Term t2)
     {
-        // Return the difference of two Terms
+        // Return the difference between two Terms
         Fraction coefficient = Fraction.subtract(t1.getCoefficient(), t2.getCoefficient());
         return new Term(coefficient, t1.getExponent());
     }

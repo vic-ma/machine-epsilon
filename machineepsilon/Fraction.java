@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Fraction implements Comparable<Fraction>
 {
-    private int numerator     // Contains sign information (positive or negative)
+    private int numerator;    // Contains sign information (positive or negative)
     private int denominator;  // Always positive
 
     public Fraction(int numerator, int denominator)
@@ -140,7 +140,7 @@ public class Fraction implements Comparable<Fraction>
 
     public static Fraction subtract(Fraction f1, Fraction f2)
     {
-        // Return the difference of two Fractions
+        // Return the difference between two Fractions
         int numerator = f1.getNumerator() * f2.getDenominator()
             - f2.getNumerator() * f1.getDenominator();
         int denominator = f1.getDenominator() * f2.getDenominator();
