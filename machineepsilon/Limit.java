@@ -42,12 +42,4 @@ public class Limit
     {
         return l;
     }
-
-    public static void main(String args[])
-    {
-        Limit l = new Limit("lim x→3 x^2-3x+1 = 1");
-        System.out.println(l.getC());
-        System.out.println(l.getF());
-        System.out.println(l.getL());
-    }
 }

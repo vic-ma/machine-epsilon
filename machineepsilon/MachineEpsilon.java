@@ -12,14 +12,14 @@ public class MachineEpsilon
         Polynomial f = lim.getF();
         Fraction l = lim.getL();
 
-        if (f.getDegree() == 0)
+        if (f.getDegree() == 0)  // Constant function
         {
             output += "Let ϵ > 0\n\n";
             output += "Then, |f(x)-L| = 0 < ϵ ∎";
             outputBox.setText(output);
             return;
         }
-        else if (f.getDegree() == 1)
+        else if (f.getDegree() == 1)  // Linear function
         {
             output += "Let ϵ > 0\n\n";
 
@@ -46,6 +46,8 @@ public class MachineEpsilon
             outputBox.setText(output);
             return;
         }
+
+        // Function with n >= 2
 
         output += "ROUGH WORK\n\n";
 
