@@ -50,6 +50,7 @@ public class Fraction implements Comparable<Fraction>
 
     public Fraction abs()
     {
+        // Return absolute value version of this Fraction
         return new Fraction(Math.abs(numerator), denominator);
     }
 
@@ -64,9 +65,12 @@ public class Fraction implements Comparable<Fraction>
 
     public void simplify()
     {
+        // Reduce fraction if possible
+
         int gcf = greatestCommonFactor(numerator, denominator);
         numerator /= gcf;
         denominator /= gcf;
+
         if (denominator < 0)
         {
             numerator *= -1;
@@ -74,14 +78,17 @@ public class Fraction implements Comparable<Fraction>
         }
     }
 
-    public static int greatestCommonFactor(int a, int b)
+    private static int greatestCommonFactor(int a, int b)
     {
         return b==0 ? a : greatestCommonFactor(b, a%b);
     }
 
     public int compareTo(Fraction frac)
     {
+        // Return -1, 0, or 1, iff this Fraction is less than, equal to, or greater than frac
+
         Fraction difference = Fraction.subtract(this, frac);
+
         if (this.numerator > 0)
         {
             if (frac.getNumerator() < 0)
@@ -116,11 +123,13 @@ public class Fraction implements Comparable<Fraction>
 
     public static Fraction max(Fraction f1, Fraction f2)
     {
-        return (f1.compareTo(f2) > 0 ? f1 : f2);
+        // Return the larger of two Fractions, or f1 if equal
+        return (f1.compareTo(f2) >= 0 ? f1 : f2);
     }
 
     public static Fraction add(Fraction f1, Fraction f2)
     {
+        // Return the sum of two Fractions
         int numerator = f1.getNumerator() * f2.getDenominator()
             + f2.getNumerator() * f1.getDenominator();
         int denominator = f1.getDenominator() * f2.getDenominator();
@@ -131,6 +140,7 @@ public class Fraction implements Comparable<Fraction>
 
     public static Fraction subtract(Fraction f1, Fraction f2)
     {
+        // Return the difference of two Fractions
         int numerator = f1.getNumerator() * f2.getDenominator()
             - f2.getNumerator() * f1.getDenominator();
         int denominator = f1.getDenominator() * f2.getDenominator();
@@ -141,6 +151,7 @@ public class Fraction implements Comparable<Fraction>
 
     public static Fraction multiply(Fraction f1, Fraction f2)
     {
+        // Return the product of two Fractions
         int numerator = f1.getNumerator() * f2.getNumerator();
         int denominator = f1.getDenominator() * f2.getDenominator();
         Fraction product = new Fraction(numerator, denominator);
@@ -150,10 +161,7 @@ public class Fraction implements Comparable<Fraction>
 
     public static Fraction divide(Fraction f1, Fraction f2)
     {
+        // Return the quotient of two Fractions
         return multiply(f1, new Fraction(f2.getDenominator(), f2.getNumerator()));
-    }
-
-    public static void main(String args[])
-    {
     }
 }
