@@ -37,7 +37,7 @@ public class MachineEpsilon
             Polynomial xMinusC = new Polynomial();
             xMinusC.addTerm(new Term(1, 1));
             xMinusC.subtractTerm(new Term(c, 0));
-            output += String.format("Assume |x-c| = |%s| < δ\n\n", xMinusC);
+            output += String.format("Assume 0 < |x-c| = |%s| < δ\n\n", xMinusC);
 
             Polynomial fMinusL = new Polynomial(f);
             fMinusL.subtractTerm(new Term(l, 0));
@@ -60,7 +60,7 @@ public class MachineEpsilon
 
         output += String.format("\t|f(x)-L|/|x-c|\t= |%s|/|%s|\n\t\t= |%s|\n\n", fMinusL, xMinusC, quotient);
 
-        output += String.format("Assume that |x-c| = |%s| < δ, so that\n\n\t"
+        output += String.format("Assume that 0 < |x-c| = |%s| < δ, so that\n\n\t"
                                 +"|f(x)-L| \t= |%s||%s|\n\t\t< δ|%s|\t\n\n", xMinusC, xMinusC, quotient, quotient);
 
         Polynomial absQuotient = quotient.abs();
@@ -89,7 +89,7 @@ public class MachineEpsilon
             delta = kFrac.getDenominator() + "ϵ/" + kFrac.getNumerator();
         output += String.format("Let ϵ > 0\n\nSet δ = min{1, %s}\n\n", delta);
 
-        output += String.format("Assume |%s| < δ\n\nThen, since |%s| < δ ≤ 1,\n\n\t"
+        output += String.format("Assume 0 < |%s| < δ\n\nThen, since |%s| < δ ≤ 1,\n\n\t"
                                 +"|f(x)-L| < %sδ, by (*)\n\n", xMinusC, xMinusC, kStr);
 
         output += String.format("And since δ ≤ %s,\n\n\t%sδ ≤ %s(%s) = ϵ ∎",
